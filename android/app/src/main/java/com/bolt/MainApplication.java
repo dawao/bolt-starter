@@ -5,7 +5,7 @@ import android.util.Log;
 
 import com.facebook.react.ReactApplication;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
-import com.microsoft.codepush.react.CodePush;
+//import com.microsoft.codepush.react.CodePush;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
@@ -20,10 +20,10 @@ public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
 
-    @Override
-    protected String getJSBundleFile() {
-      return CodePush.getJSBundleFile();
-    }
+//    @Override
+//    protected String getJSBundleFile() {
+//      return CodePush.getJSBundleFile();
+//    }
 
     @Override
     public boolean getUseDeveloperSupport() {
@@ -35,7 +35,7 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
             new RNDeviceInfo(),
-            new CodePush(null, getApplicationContext(), BuildConfig.DEBUG),
+            //new CodePush(null, getApplicationContext(), BuildConfig.DEBUG),
             new VectorIconsPackage()
       );
     }

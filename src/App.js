@@ -1,18 +1,18 @@
 'use strict'
 
 import React, { Component } from 'react'
-import codePush from 'react-native-code-push'
+// import codePush from 'react-native-code-push'
 import { Provider } from 'mobx-react/native'
 import Navigation from './Navigation'
 
 // ===[ Stores ]===
-import listStore from './stores/listStore'
+import stores from './stores'
 
-@codePush
+// @codePush
 class App extends Component {
   render () {
     return (
-      <Provider listStore={listStore}>
+      <Provider {...stores}>
         <Navigation />
       </Provider>
     )

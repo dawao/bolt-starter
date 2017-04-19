@@ -1,9 +1,9 @@
 import { extendObservable, observable, action } from 'mobx'
-import {fetch} from 'whatwg-fetch'
 // import { setToken, clearToken, getToken } from '../utils/Storage'
 import RC4 from '../utils/rc4'
 
 const host = 'http://172.0.66.14:8080'
+const fetch = global.fetch
 /**
  * @class Account
  */

@@ -1,5 +1,5 @@
 import { extendObservable, observable, action } from 'mobx'
-import fetch from 'whatwg-fetch'
+import {fetch} from 'whatwg-fetch'
 // import { setToken, clearToken, getToken } from '../utils/Storage'
 import RC4 from '../utils/rc4'
 

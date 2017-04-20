@@ -12,16 +12,14 @@ class TodoList extends Component {
   }
 
   static navigationOptions = {
-    tabBar: {
-      label: 'Settings',
-      icon: ({ tintColor, focused }) => (
-        <Ionicons
-          name={focused ? 'ios-settings' : 'ios-settings-outline'}
-          size={26}
-          style={{ color: tintColor }}
-        />
-      )
-    },
+    tabBarLabel: 'Settings',
+    tabBarIcon: ({ tintColor, focused }) => (
+      <Ionicons
+        name={focused ? 'ios-settings' : 'ios-settings-outline'}
+        size={26}
+        style={{ color: tintColor }}
+      />
+    ),
     title: '⚡ Bolt List'
   }
 

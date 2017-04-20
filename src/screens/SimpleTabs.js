@@ -44,16 +44,15 @@ const MyHomeScreen = () => (
 )
 
 MyHomeScreen.navigationOptions = {
-  tabBar: {
-    label: 'Home',
-    icon: ({ tintColor, focused }) => (
-      <Ionicons
-        name={focused ? 'ios-home' : 'ios-home-outline'}
-        size={26}
-        style={{ color: tintColor }}
-      />
-    )
-  }
+  tabBarLabel: 'Home',
+  tabBarIcon: ({ tintColor, focused }) => (
+    <Ionicons
+      name={focused ? 'ios-home' : 'ios-home-outline'}
+      size={26}
+      style={{ color: tintColor }}
+    />
+  )
+
 }
 
 const option = {
@@ -82,16 +81,14 @@ const MyPeopleScreen = () => (
 )
 
 MyPeopleScreen.navigationOptions = {
-  tabBar: {
-    label: 'People',
-    icon: ({ tintColor, focused }) => (
-      <Ionicons
-        name={focused ? 'ios-people' : 'ios-people-outline'}
-        size={26}
-        style={{ color: tintColor }}
-      />
-    )
-  }
+  tabBarLabel: 'People',
+  tabBarIcon: ({ tintColor, focused }) => (
+    <Ionicons
+      name={focused ? 'ios-people' : 'ios-people-outline'}
+      size={26}
+      style={{ color: tintColor }}
+    />
+  )
 }
 
 const SimpleTabs = TabNavigator({

@@ -5,23 +5,10 @@ import {
   Text,
   View
 } from 'react-native'
-
-import Ionicons from 'react-native-vector-icons/Ionicons'
 import {Button} from 'react-native-elements'
 import autobind from 'autobind-decorator'
 
 export default class Launch extends Component {
-  static navigationOptions = {
-    tabBarLabel: 'People',
-    tabBarIcon: ({ tintColor, focused }) => (
-      <Ionicons
-        name={focused ? 'ios-people' : 'ios-people-outline'}
-        size={26}
-        style={{ color: tintColor }}
-      />
-    )
-  }
-
   @autobind _showLogin () {
     this.props.navigation.navigate('Home')
   }

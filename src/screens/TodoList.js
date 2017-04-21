@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { View, StyleSheet, Alert } from 'react-native'
 import { Button, List, ListItem, FormInput } from 'react-native-elements'
-import Ionicons from 'react-native-vector-icons/Ionicons'
 import {observer, inject} from 'mobx-react/native'
 import colors from '../config/colors'
 

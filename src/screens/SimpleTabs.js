@@ -60,7 +60,7 @@ const SimpleTabs = TabNavigator({
   }
 }, {
   tabBarOptions: {
-    activeTintColor: Platform.OS === 'ios' ? '#e91e63' : '#fff',
+    activeTintColor: Platform.OS === 'ios' ? '#e91e63' : '#ccc',
     inactiveTintColor: '#999',
     showIcon: true
   },

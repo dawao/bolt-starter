@@ -4,25 +4,12 @@ import {
   StyleSheet,
   ScrollView
 } from 'react-native'
-
-import Ionicons from 'react-native-vector-icons/Ionicons'
 import {observer} from 'mobx-react/native'
 import Echarts from 'native-echarts'
 import SampleText from '../components/SampleText'
 
 @observer
 export default class Settings extends Component {
-  static navigationOptions = {
-    tabBarLabel: 'Settings',
-    tabBarIcon: ({ tintColor, focused }) => (
-      <Ionicons
-        name={focused ? 'ios-settings' : 'ios-settings-outline'}
-        size={26}
-        style={{ color: tintColor }}
-      />
-    )
-  }
-
   render () {
     const option = {
       title: {

@@ -11,18 +11,6 @@ class TodoList extends Component {
     text: ''
   }
 
-  static navigationOptions = {
-    tabBarLabel: 'Settings',
-    tabBarIcon: ({ tintColor, focused }) => (
-      <Ionicons
-        name={focused ? 'ios-settings' : 'ios-settings-outline'}
-        size={26}
-        style={{ color: tintColor }}
-      />
-    ),
-    title: '⚡ Bolt List'
-  }
-
   addListItem = () => {
     this.props.listStore.addListItem(this.state.text)
     this.setState({ text: '' })

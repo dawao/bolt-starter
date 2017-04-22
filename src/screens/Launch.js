@@ -7,7 +7,10 @@ import {
 } from 'react-native'
 import {Button} from 'react-native-elements'
 import autobind from 'autobind-decorator'
+import { observer, inject } from 'mobx-react/native'
 
+@inject('account')
+@observer
 export default class Launch extends Component {
   @autobind _showLogin () {
     this.props.navigation.navigate('Home')
@@ -18,6 +21,11 @@ export default class Launch extends Component {
   }
 
   render () {
+    const isAuthenticated = this.props.account.isAuthenticated
+
+    if (!isAuthenticated) {
+      return null
+    }
     return (
       <View style={styles.container}>
         <View style={styles.topSection}>
@@ -34,8 +42,10 @@ export default class Launch extends Component {
             buttonStyle={{marginTop: 10, borderRadius: 5}} />
           <Button
             onPress={() => this.props.navigation.back()}
-            title='Go back'
-          />
+            title='Go back' />
+          <Button title='Sign Out'
+            onPress={this.props.account.promptForLogout}
+            backgroundColor='#777' />
         </View>
       </View>
     )

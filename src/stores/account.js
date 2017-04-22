@@ -1,4 +1,6 @@
+import { Alert } from 'react-native';
 import { extendObservable, observable, action } from 'mobx'
+import autobind from 'autobind-decorator'
 // import { setToken, clearToken, getToken } from '../utils/Storage'
 import RC4 from '../utils/rc4'
 
@@ -34,12 +36,27 @@ class Account {
       })
   }
 
-  logout () {
+  @autobind promptForLogout() {
+    Alert.alert('Sign Out', 'Are you sure you want to sign out?',
+      [
+        {
+          text: 'Cancel', onPress: () => {
+        }, style: 'cancel'
+        },
+        {text: 'Yes', onPress: this.logout, style: 'destructive'},
+      ]
+    )
+  }
+
+  @autobind logout () {
+    this.isAuthenticated = false
+    /**
     fetch('api/account/logout')
     .then(() => {
       this.username = null
       this.token = null
     })
+    */
   }
 
   register (params) {

@@ -1,4 +1,4 @@
-import { Alert } from 'react-native';
+import { Alert } from 'react-native'
 import { extendObservable, observable, action } from 'mobx'
 import autobind from 'autobind-decorator'
 // import { setToken, clearToken, getToken } from '../utils/Storage'
@@ -28,22 +28,24 @@ class Account {
       },
       body: JSON.stringify({name: test.encrypt('sysadmin'), password: test.encrypt('admin')})
     }).then((response) => response.json())
-      .then(account => {
-        this.token = account.token
+      .then(res => {
+        this.token = res.token
         this.isAuthenticated = true
       }).catch((error) => {
         console.log(error)
       })
   }
 
-  @autobind promptForLogout() {
+  @autobind promptForLogout () {
     Alert.alert('Sign Out', 'Are you sure you want to sign out?',
       [
         {
-          text: 'Cancel', onPress: () => {
-        }, style: 'cancel'
+          text: 'Cancel',
+          onPress: () => {
+          },
+          style: 'cancel'
         },
-        {text: 'Yes', onPress: this.logout, style: 'destructive'},
+        {text: 'Yes', onPress: this.logout, style: 'destructive'}
       ]
     )
   }

@@ -11,6 +11,7 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import TodoList from './TodoList'
+import Inventory from './Inventory'
 import Launch from './Launch'
 import Settings from './Settings'
 
@@ -61,9 +62,14 @@ var settingsNavOpt = {
 // 页签设置
 const SimpleTabs = TabNavigator({
   Home: {
-    screen: TodoList,
+    screen: Inventory,
     navigationOptions: homeNavOpt,
     path: ''
+  },
+  TodoList: {
+    screen: TodoList,
+    navigationOptions: launchNavOpt,
+    path: 'chart'
   },
   Launch: {
     screen: Launch,

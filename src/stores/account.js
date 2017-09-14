@@ -2,9 +2,10 @@ import { Alert } from 'react-native'
 import { extendObservable, observable, action } from 'mobx'
 import autobind from 'autobind-decorator'
 // import { setToken, clearToken, getToken } from '../utils/Storage'
-import RC4 from '../utils/rc4'
+// import RC4 from '../utils/rc4'
 
-const host = 'http://172.0.66.14:8080'
+// const host = 'http://60.2.98.180:18084/lw'
+// const host = 'http://172.0.66.181:8084/lw'
 const fetch = global.fetch
 /**
  * @class Account
@@ -20,20 +21,21 @@ class Account {
   }
 
   @action login (params) {
-    var test = new RC4('jQuery')
-    fetch(host + '/jeesite/a/mobile', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({name: test.encrypt('sysadmin'), password: test.encrypt('admin')})
-    }).then((response) => response.json())
-      .then(res => {
-        this.token = res.token
-        this.isAuthenticated = true
-      }).catch((error) => {
-        console.log(error)
-      })
+    this.isAuthenticated = true
+    // var test = new RC4('jQuery')
+    // fetch(host + '/a/mobile', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify({name: test.encrypt('sysadmin'), password: test.encrypt('admin')})
+    // }).then((response) => response.json())
+    //   .then(res => {
+    //     this.token = res.token
+    //     this.isAuthenticated = true
+    // }).catch((error) => {
+    //   console.log(error)
+    // })
   }
 
   @autobind promptForLogout () {

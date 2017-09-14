@@ -13,7 +13,7 @@ import { action, computed, observable } from 'mobx'
 import autobind from 'autobind-decorator'
 
 function getCurrentState (
-  state: NavigationState,
+  state: NavigationState
 ): NavigationState | (NavigationRoute & NavigationState) {
   const childRoute = state.routes[state.index]
   if (childRoute.routes) {
@@ -61,21 +61,21 @@ class NavigationStore {
     return this.dispatchNavigation(
       NavigationActions.back({
         key: key === undefined ? navKey : key
-      }),
+      })
     )
   }
 
   @autobind navigate (
     routeName: string,
     params?: NavigationParams,
-    navAction?: NavigationAction,
+    navAction?: NavigationAction
   ): boolean {
     return this.dispatchNavigation(
       NavigationActions.navigate({
         routeName,
         params,
         action: navAction
-      }),
+      })
     )
   }
 
@@ -84,7 +84,7 @@ class NavigationStore {
       NavigationActions.setParams({
         params,
         key: this.state.key
-      }),
+      })
     )
   }
 }

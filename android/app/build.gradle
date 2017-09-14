@@ -140,6 +140,9 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-fetch-blob')
+    compile project(':react-native-pdf')
+    compile project(':react-native-sound')
     compile project(':react-native-device-info')
     //compile project(':react-native-code-push')
     compile project(':react-native-vector-icons')

@@ -10,4 +10,4 @@ export const setToken = async (token) => {
   await AsyncStorage.setItem(TOKEN_KEY, token)
 }
 
-export const getToken = async () => await AsyncStorage.getItem(TOKEN_KEY)
+export const getToken = async () => AsyncStorage.getItem(TOKEN_KEY)

@@ -1,6 +1,8 @@
 import { Alert } from 'react-native'
 import { extendObservable, observable, action } from 'mobx'
 import autobind from 'autobind-decorator'
+
+// import RNFetchBlob from 'react-native-fetch-blob'
 // import { setToken, clearToken, getToken } from '../utils/Storage'
 // import RC4 from '../utils/rc4'
 
@@ -22,7 +24,23 @@ class Account {
 
   @action login (params) {
     this.isAuthenticated = true
+
     // var test = new RC4('jQuery')
+    // RNFetchBlob.config({
+    //   trusty : true
+    // }).fetch('POST', 'https://172.0.66.181:8082/lw/a/mobile', {
+    //   'Content-Type' : 'application/json'
+    // }, JSON.stringify({name: test.encrypt('sysadmin'), password: test.encrypt('admin')})
+    // ).then((resp) => {
+    //   // ...
+    //   console.log(resp)
+    //   resp.json()
+
+    // }).catch((err) => {
+    //   // ...
+    //   console.log(err)
+    // })
+
     // fetch(host + '/a/mobile', {
     //   method: 'POST',
     //   headers: {

@@ -9,7 +9,6 @@ import {
   Text
 } from 'react-native'
 import {observer} from 'mobx-react/native'
-import Echarts from 'native-echarts'
 import SampleText from '../components/SampleText'
 import mpdf from './mpdf.json'
 import Pdf from 'react-native-pdf'
@@ -102,30 +101,11 @@ export default class Settings extends Component {
   }
 
   render () {
-    const option = {
-      title: {
-        text: 'ECharts 示例'
-      },
-      tooltip: {},
-      legend: {
-        data: ['销量']
-      },
-      xAxis: {
-        data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
-      },
-      yAxis: {},
-      series: [{
-        name: '销量',
-        type: 'bar',
-        data: [5, 20, 36, 10, 10, 20]
-      }]
-    }
     let source = {uri: 'bundle-assets://test.pdf'}
 
     return (
       <ScrollView style={styles.container}>
         <SampleText>{'Echarts banner'}</SampleText>
-        <Echarts option={option} height={300} />
         <View style={{flexDirection: 'row'}}>
           <TouchableHighlight disabled={this.state.page === 1} style={this.state.page === 1 ? styles.btnDisable : styles.btn} onPress={() => this.prePage()}>
             <Text style={styles.btnText}>{'Previous'}</Text>
@@ -210,7 +190,7 @@ const styles = StyleSheet.create({
   pdf: {
     flex: 1,
     borderWidth: 2,
-    height: 300,
+    height: Dimensions.get('window').height-150,
     width: Dimensions.get('window').width
   }
 })

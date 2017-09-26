@@ -19,8 +19,9 @@ import Settings from './Settings'
 
 React.isValidElement(Ionicons)
 
-const homeIcon = {
-  icon: ({ tintColor, focused }) => (
+var homeNavOpt = {
+  tabBarLabel: 'Home',
+  tabBarIcon: ({ tintColor, focused }) => (
     <Ionicons
       name={focused ? 'ios-home' : 'ios-home-outline'}
       size={26}
@@ -28,18 +29,16 @@ const homeIcon = {
     />
   )
 }
-var homeNavOpt = {
-  tabBarLabel: 'Home',
-  tabBarIcon: homeIcon.icon,
-  title: '⚡ Bolt List'
+var listNavOpt = {
+  tabBarLabel: 'List',
+  tabBarIcon: ({ tintColor, focused }) => (
+    <Ionicons
+      name={focused ? 'ios-list' : 'ios-list-outline'}
+      size={26}
+      style={{ color: tintColor }}
+    />
+  )
 }
-// 有些android要这样才显示图标，在ios上这样会报错
-// if (Platform.OS === 'android') {
-//   homeNavOpt.tabBar = {
-//     label: 'Home',
-//     icon: homeIcon.icon
-//   }
-// }
 var launchNavOpt = {
   tabBarLabel: 'People',
   tabBarIcon: ({ tintColor, focused }) => (
@@ -70,8 +69,8 @@ const SimpleTabs = TabNavigator({
   },
   TodoList: {
     screen: TodoList,
-    navigationOptions: launchNavOpt,
-    path: 'chart'
+    navigationOptions: listNavOpt,
+    path: 'todo'
   },
   Launch: {
     screen: Launch,

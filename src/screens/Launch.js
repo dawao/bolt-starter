@@ -195,11 +195,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: 'rgb(230,230,230)'
   },
-  logo: {
-    resizeMode: 'contain',
-    width: 280,
-    height: 80
-  },
   tagline: {
     marginTop: 5,
     fontSize: 28,

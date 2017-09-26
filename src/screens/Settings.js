@@ -15,7 +15,7 @@ import mpdf from './mpdf.json'
 import Pdf from 'react-native-pdf'
 // Import the react-native-sound module
 import {default as Sound} from 'react-native-sound'
-import {sec_to_time, time_to_sec} from '../utils/time'
+import {timeToSec} from '../utils/time'
 
 @observer
 export default class Settings extends Component {
@@ -31,65 +31,63 @@ export default class Settings extends Component {
   }
 
   componentDidMount () {
-
     // Load the sound file 'whoosh.mp3' from the app bundle
     // See notes below about preloading sounds within initialization code below.
     var whoosh = new Sound('advertising.mp3', Sound.MAIN_BUNDLE, (error) => {
       if (error) {
-        console.log('failed to load the sound', error);
-        return;
+        console.log('failed to load the sound', error)
+        return
       }
       // loaded successfully
-      console.log('duration in seconds: ' + whoosh.getDuration() + 'number of channels: ' + whoosh.getNumberOfChannels());
-    });
-    this.whoosh = whoosh;
+      console.log('duration in seconds: ' + whoosh.getDuration() + 'number of channels: ' + whoosh.getNumberOfChannels())
+    })
+    this.whoosh = whoosh
   }
   componentWillUnmount () {
     // Release the audio player resource
-    this.whoosh.release();
-    this.timer && clearTimeout(this.timer);
+    this.whoosh.release()
+    this.timer && clearTimeout(this.timer)
   }
 
   turnPage=(page) => {
-    var period = mpdf.sync[page];
-    if(period){
-      var time = period.split('-');
-      var s1 = time_to_sec(time[0].split(',')[0]);
-      var s2 = time_to_sec(time[1].split(',')[0]);
-      var that = this.whoosh;
+    var period = mpdf.sync[page]
+    if (period) {
+      var time = period.split('-')
+      var s1 = timeToSec(time[0].split(',')[0])
+      var s2 = timeToSec(time[1].split(',')[0])
+      var that = this.whoosh
       // Pause the sound
-      that.pause();
+      that.pause()
       // Seek to a specific point in seconds
-      that.setCurrentTime(s1);
+      that.setCurrentTime(s1)
 
       // Get the current playback point in seconds
       // this.whoosh.getCurrentTime((seconds) => console.log('at ' + seconds));
       // Play the sound with an onEnd callback
       that.play((success) => {
         if (success) {
-          console.log('successfully finished playing');
+          console.log('successfully finished playing')
         } else {
-          console.log('playback failed due to audio decoding errors');
+          console.log('playback failed due to audio decoding errors')
           // reset the player to its uninitialized state (android only)
           // this is the only option to recover after an error occured and use the player again
-          that.reset();
+          that.reset()
         }
-      });
-      this.timer && clearTimeout(this.timer);
+      })
+      this.timer && clearTimeout(this.timer)
       this.timer = setTimeout(
-        () => { console.log('把一个定时器的引用挂在this上',s2); that.pause(); },
-        (s2-s1)*1000
-      );
+        () => { console.log('把一个定时器的引用挂在this上', s2); that.pause() },
+        (s2 - s1) * 1000
+      )
     }
   }
   prePage=() => {
-
     if (this.pdf) {
       let prePage = this.state.page > 1 ? this.state.page - 1 : 1
       this.pdf.setNativeProps({page: prePage})
       this.setState({page: prePage})
       console.log(`prePage: ${prePage}`)
-      this.turnPage(prePage);
+      this.turnPage(prePage)
     }
   }
 
@@ -99,7 +97,7 @@ export default class Settings extends Component {
       this.pdf.setNativeProps({page: nextPage})
       this.setState({page: nextPage})
       console.log(`nextPage: ${nextPage}`)
-      this.turnPage(nextPage);
+      this.turnPage(nextPage)
     }
   }
 

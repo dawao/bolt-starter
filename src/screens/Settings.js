@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
   pdf: {
     flex: 1,
     borderWidth: 2,
-    height: Dimensions.get('window').height-150,
+    height: Dimensions.get('window').height - 150,
     width: Dimensions.get('window').width
   }
 })

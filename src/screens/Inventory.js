@@ -137,7 +137,7 @@ export default class Inventory extends Component {
         data: [5, 20, 36, 10, 20]
       }]
     }
-    var {height,width}=Dimensions.get('window')
+    var {height, width} = Dimensions.get('window')
     return (
       <ScrollView style={styles.container}>
         <TouchableOpacity onPress={this._showPicker.bind(this)}>
@@ -149,7 +149,7 @@ export default class Inventory extends Component {
         <TouchableOpacity style={{marginTop: 10, marginLeft: 20}} onPress={this._showAreaPicker.bind(this)}>
           <Text>AreaPicker</Text>
         </TouchableOpacity>
-        <Echarts option={option} height={height-200} width={width}/>
+        <Echarts option={option} height={height - 200} width={width} />
       </ScrollView>
     )
   }

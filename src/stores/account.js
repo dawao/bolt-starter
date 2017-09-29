@@ -5,7 +5,9 @@ import autobind from 'autobind-decorator'
 // import RNFetchBlob from 'react-native-fetch-blob'
 // import { setToken, clearToken, getToken } from '../utils/Storage'
 // import RC4 from '../utils/rc4'
+// import config from '../config/server'
 
+// const host = config.host
 // const host = 'http://60.2.98.180:18084/lw'
 // const host = 'http://172.0.66.181:8084/lw'
 const fetch = global.fetch

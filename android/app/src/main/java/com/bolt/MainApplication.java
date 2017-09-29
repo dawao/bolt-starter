@@ -11,6 +11,7 @@ import com.oblador.vectoricons.VectorIconsPackage;
 import com.beefe.picker.PickerViewPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 //import com.microsoft.codepush.react.CodePush;
+import com.wix.reactnativenotifications.RNNotificationsPackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -43,6 +44,7 @@ public class MainApplication extends Application implements ReactApplication {
             new RNSoundPackage(),
             new PickerViewPackage(),
             new RNDeviceInfo(),
+            new RNNotificationsPackage(MainApplication.this),
             //new CodePush(null, getApplicationContext(), BuildConfig.DEBUG),
             new VectorIconsPackage()
       );

@@ -5,56 +5,25 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  Text
+  View
 } from 'react-native'
+import { Button, ButtonGroup, Card, CheckBox, List, ListItem } from 'react-native-elements'
 import {observer} from 'mobx-react/native'
 import Echarts from 'native-echarts'
 import Picker from 'react-native-picker'
 import SampleText from '../components/SampleText'
-import area from './area.json'
 
 @observer
 export default class Inventory extends Component {
   constructor (props, context) {
     super(props, context)
     this.state = {
-      str1: '请选择采供血机构',
+      selectedIndex: 1,
+      checked: true,
+      str1: '请选择采供血机构和库存类型',
       str2: '请选择血液产品和库存类型'
     }
-  }
-  _createAreaData () {
-    let data = []
-    let len = area.length
-    for (let i = 0; i < len; i++) {
-      let city = []
-      for (let j = 0, cityLen = area[i]['city'].length; j < cityLen; j++) {
-        let _city = {}
-        _city[area[i]['city'][j]['name']] = area[i]['city'][j]['area']
-        city.push(_city)
-      }
-
-      let _data = {}
-      _data[area[i]['name']] = city
-      data.push(_data)
-    }
-    return data
-  }
-  _showAreaPicker () {
-    Picker.init({
-      pickerData: this._createAreaData(),
-      selectedValue: ['河北', '唐山', '古冶区'],
-      onPickerConfirm: pickedValue => {
-        console.log('area', pickedValue)
-      },
-      onPickerCancel: pickedValue => {
-        console.log('area', pickedValue)
-      },
-      onPickerSelect: pickedValue => {
-            // Picker.select(['山东', '青岛', '黄岛区'])
-        console.log('area', pickedValue)
-      }
-    })
-    Picker.show()
+    this.updateIndex = this.updateIndex.bind(this)
   }
 
   _showPicker () {
@@ -118,6 +87,14 @@ export default class Inventory extends Component {
     Picker.show()
   }
 
+  _check () {
+    this.setState({checked: !this.state.checked})
+  }
+
+  updateIndex (selectedIndex) {
+    this.setState({selectedIndex})
+  }
+
   render () {
     const option = {
       title: {
@@ -128,28 +105,88 @@ export default class Inventory extends Component {
         data: ['血量']
       },
       xAxis: {
+        axisLabel: {
+          rotate: 60
+        },
         data: ['全血', '冰冻红细胞', '单采血小板', '单采新鲜冰冻血浆', '新鲜冰冻血浆']
       },
       yAxis: {},
       series: [{
-        name: '销量',
+        name: '血量',
         type: 'bar',
         data: [5, 20, 36, 10, 20]
       }]
     }
-    var {height, width} = Dimensions.get('window')
+    const list = [
+      {
+        name: '芜湖市中心血站',
+        subtitle: '20'
+      },
+      {
+        name: '宿迁市中心血站',
+        subtitle: '36'
+      }
+    ]
+    const buttons = ['图形显示', '数据表格']
+    const { selectedIndex } = this.state
+    const {height, width} = Dimensions.get('window')
     return (
       <ScrollView style={styles.container}>
+        <Card containerStyle={{padding: 0, marginLeft: 0, marginRight: 0}} >
+          <View style={{flexDirection: 'row'}}>
+            <CheckBox
+              center
+              title='按采供血机构查看'
+              checkedColor='#00aced'
+              checkedIcon='dot-circle-o'
+              uncheckedIcon='circle-o'
+              checked={this.state.checked}
+              onPress={this._check.bind(this)}
+              containerStyle={{borderWidth: 0}}
+          />
+            <CheckBox
+              center
+              title=' 按血液产品查看 '
+              right
+              checkedColor='#00aced'
+              checkedIcon='dot-circle-o'
+              uncheckedIcon='circle-o'
+              checked={!this.state.checked}
+              onPress={this._check.bind(this)}
+              containerStyle={{borderWidth: 0}}
+          />
+          </View>
+
+          <Button
+            raised
+            icon={{name: 'cached'}}
+            buttonStyle={{marginLeft: 10, marginRight: 10}}
+            onPress={this._showPicker2.bind(this)}
+            title={this.state.checked ? this.state.str2 : this.state.str1} />
+
+          <ButtonGroup
+            onPress={this.updateIndex}
+            selectedIndex={selectedIndex}
+            buttons={buttons} />
+        </Card>
+
+        <List containerStyle={{marginBottom: 20}}>
+          {
+            list.map((l, i) => (
+              <ListItem
+                key={i}
+                hideChevron
+                title={l.name}
+                rightTitle={l.subtitle}
+              />
+            ))
+          }
+        </List>
+
+        <Echarts option={option} height={300} />
         <TouchableOpacity onPress={this._showPicker.bind(this)}>
-          <SampleText>{this.state.str1}</SampleText>
+          <SampleText>请选择采供血机构</SampleText>
         </TouchableOpacity>
-        <TouchableOpacity onPress={this._showPicker2.bind(this)}>
-          <SampleText>{this.state.str2}</SampleText>
-        </TouchableOpacity>
-        <TouchableOpacity style={{marginTop: 10, marginLeft: 20}} onPress={this._showAreaPicker.bind(this)}>
-          <Text>AreaPicker</Text>
-        </TouchableOpacity>
-        <Echarts option={option} height={height - 200} width={width} />
       </ScrollView>
     )
   }

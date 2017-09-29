@@ -5,17 +5,17 @@ import React from 'react'
 // ===[ Screens ]===
 import SimpleTabs from './screens/SimpleTabs'
 import LoginScreen from './screens/LoginScreen'
-import TodoList from './screens/TodoList'
-import NewItem from './screens/NewItem'
+import Splash from './screens/Splash'
+import ServerSet from './screens/ServerSet'
 
 const UnauthenticatedNavigator = StackNavigator(
   {
     LoginScreen: { screen: LoginScreen },
-    NewItem: { screen: NewItem },
-    TodoList: { screen: TodoList }
+    Splash: { screen: Splash },
+    ServerSet: { screen: ServerSet }
   },
   {
-    initialRouteName: 'LoginScreen',
+    initialRouteName: 'Splash',
     headerMode: 'none',
 
    /*

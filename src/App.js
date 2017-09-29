@@ -12,12 +12,11 @@ import Navigation from './Navigation'
 // ===[ Stores ]===
 import stores from './stores'
 
-
 // @codePush
 class App extends Component {
-  constructor (props) {
-    super(props)
-  }
+  // constructor (props) {
+  //   super(props)
+  // }
 
   componentWillMount () {
     // need import lib RCTPush....xcodeproj and link .a file

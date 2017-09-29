@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {
-  Dimensions,
+  // Dimensions,
   Platform,
   StyleSheet,
   ScrollView,
@@ -129,7 +129,7 @@ export default class Inventory extends Component {
     ]
     const buttons = ['图形显示', '数据表格']
     const { selectedIndex } = this.state
-    const {height, width} = Dimensions.get('window')
+    // const {height, width} = Dimensions.get('window')
     return (
       <ScrollView style={styles.container}>
         <Card containerStyle={{padding: 0, marginLeft: 0, marginRight: 0}} >
